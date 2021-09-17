@@ -9,7 +9,7 @@ let chess = [
     [0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
-
+// const función para seleccionar con el mouse 
 const myFuncs = {
     "alfil":
     //elemento en el que estoy cuando doy click 
@@ -64,10 +64,8 @@ const choose = (e) => {
     e.target.parentNode.classList.add("green");
 
     $(".chess-block").unbind("click");
-    $("#boton").bind("click");
 
     $(".chess-block").bind("click", myFuncs[chosenFigure]);
-
     $(".descr span").text(chosenFigure);
     clearField();
 };
@@ -88,7 +86,42 @@ const drawField = () => {
     $(".field").html(outStr);
     $(".chess-block").bind("click", myFuncs[chosenFigure]);
     $(".piece").bind("click", choose);
+    $("#boton").bind("click", posicion);
+
 };
+
+//funcion para asignar posición con los input
+function posicion(e) {
+    //elemento en el que estoy cuando doy click 
+
+    clearField();
+    markPlace(e);
+    let x = parseInt($(".ancho").val());
+    let y = parseInt($(".largo").val());
+    $(".chess-block").removeClass('active');
+    $(`.chess-block[data-x=${x}][data-y=${y}]`).addClass('active');
+
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            if (i == x && j == y) continue;
+            if (j - i == y - x) {
+                $(`.chess-block[data-x=${i}][data-y=${j}]`).addClass('active');
+            }
+        }
+    }
+
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            if (i == x && j == y) continue;
+            if (i + j == x + y) {
+                $(`.chess-block[data-x=${i}][data-y=${j}]`).addClass('active');
+            }
+        }
+    }
+
+    changeBackgroundImage();
+
+}
 
 
 drawField();
