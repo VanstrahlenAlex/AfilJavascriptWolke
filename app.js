@@ -19,6 +19,7 @@ const myFuncs = {
         let x = +e.target.dataset.x;
         let y = +e.target.dataset.y;
 
+        //Me dibuja los posibles movimientos del alfil hacia abajo
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (i == x && j == y) continue;
@@ -27,7 +28,7 @@ const myFuncs = {
                 }
             }
         }
-
+        //Me dibuja los posibles movimientos del alfil hacia arriba
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (i == x && j == y) continue;
@@ -96,6 +97,7 @@ function posicion(e) {
 
     clearField();
     markPlace(e);
+    //variables para seleccionar un div con los input
     let x = parseInt($(".ancho").val());
     let y = parseInt($(".largo").val());
     $(".chess-block").removeClass('active');
