@@ -9,7 +9,7 @@ let chess = [
     [0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
-
+// const función para seleccionar con el mouse 
 const myFuncs = {
     "alfil":
     //elemento en el que estoy cuando doy click 
@@ -19,6 +19,7 @@ const myFuncs = {
         let x = +e.target.dataset.x;
         let y = +e.target.dataset.y;
 
+        //Me dibuja los posibles movimientos del alfil hacia abajo
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (i == x && j == y) continue;
@@ -27,7 +28,7 @@ const myFuncs = {
                 }
             }
         }
-
+        //Me dibuja los posibles movimientos del alfil hacia arriba
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 if (i == x && j == y) continue;
@@ -64,10 +65,8 @@ const choose = (e) => {
     e.target.parentNode.classList.add("green");
 
     $(".chess-block").unbind("click");
-    $("#boton").bind("click");
 
     $(".chess-block").bind("click", myFuncs[chosenFigure]);
-
     $(".descr span").text(chosenFigure);
     clearField();
 };
@@ -88,7 +87,43 @@ const drawField = () => {
     $(".field").html(outStr);
     $(".chess-block").bind("click", myFuncs[chosenFigure]);
     $(".piece").bind("click", choose);
+    $("#boton").bind("click", posicion);
+
 };
+
+//funcion para asignar posición con los input
+function posicion(e) {
+    //elemento en el que estoy cuando doy click 
+
+    clearField();
+    markPlace(e);
+    //variables para seleccionar un div con los input
+    let x = parseInt($(".ancho").val());
+    let y = parseInt($(".largo").val());
+    $(".chess-block").removeClass('active'); //remueve la clase existente en el tablero de divs
+    $(`.chess-block[data-x=${x}][data-y=${y}]`).addClass('active'); //asigna una clase en la posición programada por los input
+
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            if (i == x && j == y) continue;
+            if (j - i == y - x) {
+                $(`.chess-block[data-x=${i}][data-y=${j}]`).addClass('active');
+            }
+        }
+    }
+
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            if (i == x && j == y) continue;
+            if (i + j == x + y) {
+                $(`.chess-block[data-x=${i}][data-y=${j}]`).addClass('active');
+            }
+        }
+    }
+
+    changeBackgroundImage();
+
+}
 
 
 drawField();

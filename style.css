@@ -18,6 +18,9 @@ p {
     justify-content: space-around;
     width: 50%;
     margin: 20px auto;
+    background-color: rgb(187, 204, 204);
+    padding: 25px;
+    border-radius: 20px;
 }
 
 .piece:hover {
@@ -48,19 +51,31 @@ img {
     margin: 20px auto;
 }
 
+
+/*clase para crear los cuadros */
+
 .chess-block {
     width: 50px;
     height: 50px;
     float: left;
 }
 
+
+/* asigana color negro al div*/
+
 .black {
     background-color: #383838;
 }
 
+
+/* asigana color blanco al div*/
+
 .white {
     background-color: white;
 }
+
+
+/* asigana color verde al div seleccionado con el cursor*/
 
 .green {
     background-color: lawngreen;
@@ -71,64 +86,4 @@ img {
     background-color: orange;
     background-size: contain;
     box-shadow: inset 0px 1px 1px #383838;
-}
-
-#footer {
-    display: flex;
-    justify-content: center;
-    padding: 5px 30px;
-    font-family: Open Sans;
-    color: black;
-}
-
-#footer a {
-    padding: 0 2px;
-    margin-left: 3px;
-    color: #00f;
-    text-decoration: none;
-    transition: 3s;
-}
-
-#footer a:hover {
-    padding: 0 10px;
-    color: #0c30e0;
-    text-decoration: none;
-    transition: 1s;
-}
-
-@media screen and (max-width: 1000px),
-screen and (max-height: 500px) {
-    img {
-        width: 50px;
-        height: 50px;
-    }
-    .chess-block {
-        width: 25px;
-        height: 25px;
-    }
-    .field {
-        width: 200px;
-        height: 200px;
-        margin: 10px auto;
-    }
-    .descr {
-        font-size: 12px;
-    }
-    .descr span {
-        letter-spacing: 1px;
-        font-size: 15px;
-    }
-    h1 {
-        font-size: 15px;
-    }
-    p {
-        font-size: 12px;
-    }
-    footer {
-        margin-top: 50px;
-        font-size: 8px;
-    }
-    footer a {
-        color: #00f;
-    }
 }
