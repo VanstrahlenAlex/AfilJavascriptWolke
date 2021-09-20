@@ -100,8 +100,8 @@ function posicion(e) {
     //variables para seleccionar un div con los input
     let x = parseInt($(".ancho").val());
     let y = parseInt($(".largo").val());
-    $(".chess-block").removeClass('active');
-    $(`.chess-block[data-x=${x}][data-y=${y}]`).addClass('active');
+    $(".chess-block").removeClass('active'); //remueve la clase existente en el tablero de divs
+    $(`.chess-block[data-x=${x}][data-y=${y}]`).addClass('active'); //asigna una clase en la posición programada por los input
 
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
